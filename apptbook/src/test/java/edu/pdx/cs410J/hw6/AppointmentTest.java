@@ -28,4 +28,7 @@ public class AppointmentTest {
     assertThat(appointment.getBeginTime(), is(nullValue()));
   }
 
+
+
+
 }
