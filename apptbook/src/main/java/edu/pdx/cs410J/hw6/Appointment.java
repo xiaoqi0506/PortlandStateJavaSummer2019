@@ -114,11 +114,11 @@ public class Appointment extends AbstractAppointment {
       String Emdy = ETime[0];
 
 
-     // System.out.print("Emdy: "+Bmdy);
+     // System.out.print("Emdy: "+Emdy);
       String Ehm = ETime[1];
 
 
-    //  System.out.print("Ehm: "+Ehm);
+     //System.out.print("Ehm: "+Ehm);
 
       String[] BeginSplitMDY = Bmdy.split("/", 3);
 
@@ -181,17 +181,24 @@ public class Appointment extends AbstractAppointment {
       String[] EndSplitHM = Ehm.split(":", 2);
       String EndH = EndSplitHM[0];
       int endHour = Integer.parseInt(EndH);
+     // System.out.println("endHour= "+ endHour);
       if(0>endHour || endHour>23) {
         System.out.print("invalid end hour");
         System.exit(1);
       }
       String EndMin = EndSplitHM[1];
-      int endMin = Integer.parseInt(EndMin);
+      //System.out.println("EndMin= "+ EndMin);
+        int endMin = Integer.parseInt(EndMin);
+        //System.out.println("EndMin:: "+ EndMin);
       if(0>endMin || endMin>59) {
-        System.out.print("invalid end min");
-        System.exit(1);
-      }
+            System.out.print("invalid end min");
+            System.exit(1);
+        }
 
+        if(0>beginMin || beginMin>59) {
+            System.out.print("invalid begin min");
+            System.exit(1);
+        }
       if (beginYear > endYear) {
         System.out.println("begin time Year is later than end time Year");
         return false;

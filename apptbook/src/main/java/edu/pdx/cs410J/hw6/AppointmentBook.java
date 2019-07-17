@@ -34,6 +34,13 @@ public class AppointmentBook extends AbstractAppointmentBook< Appointment> {
         this.list.add(obj);
 
     }
+    public AppointmentBook(String ower, ArrayList<Appointment> obj){
+        this.owner=ower;
+        this.list=obj;
+    }
+    public  AppointmentBook(ArrayList<Appointment>obj){
+        this.list = obj;
+    }
 
     public void printALLInfo() {
         System.out.print(' ');
