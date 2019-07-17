@@ -21,6 +21,8 @@ public class TextParser implements AppointmentBookParser <AppointmentBook> {
     /**
      * Parses the contents of a file or other input source and returns
      * an appointment book.
+     * will enter my APPTBOOOK.txt and read from it.
+     * all context has to be in the limited format
      */
 
     public AppointmentBook book;

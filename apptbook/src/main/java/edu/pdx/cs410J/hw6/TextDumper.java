@@ -13,6 +13,8 @@ import java.util.List;
  * A TextDumper dumps the contents of an appointment book3
  * (including appointments) to a text
  * file.
+ * will create appt book object and store it to APPTBOOK.
+ * if there is not such file, then create one and stroe.
  */
 public class TextDumper implements AppointmentBookDumper <AppointmentBook> {
 
