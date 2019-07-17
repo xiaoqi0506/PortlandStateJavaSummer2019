@@ -46,9 +46,9 @@ public class TextDumper implements AppointmentBookDumper <AppointmentBook> {
             String tmp_str = new String();
 
             for(int i=0; i<book.list.size(); i++){
-                tmp_str = tmp_str.concat(book.owner.toString()+" ");
-                tmp_str = tmp_str.concat(book.list.get(i).descrip.toString()+" ");
-                tmp_str = tmp_str.concat(book.list.get(i).beginTime.toString()+" ");
+                tmp_str = tmp_str.concat(book.owner.toString()+",");
+                tmp_str = tmp_str.concat(book.list.get(i).descrip.toString()+",");
+                tmp_str = tmp_str.concat(book.list.get(i).beginTime.toString()+",");
                 tmp_str = tmp_str.concat(book.list.get(i).endTime.toString());
                 tmp_str = tmp_str.concat("\n");
             }

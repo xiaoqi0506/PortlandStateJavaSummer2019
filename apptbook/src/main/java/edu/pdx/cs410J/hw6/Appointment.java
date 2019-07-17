@@ -155,7 +155,7 @@ public class Appointment extends AbstractAppointment {
       int beginMin = Integer.parseInt(BeginMin);
       if(0>beginMin || beginMin>59) {
           System.out.print("invalid begin min");
-          System.exit(1);
+          System.exit(-1);
       }
       String[] EndSplitMDY = Emdy.split("/", 3);
 
@@ -163,20 +163,20 @@ public class Appointment extends AbstractAppointment {
       int endMonth = Integer.parseInt(EndM);
       if(0>endMonth || endMonth>12){
         System.out.print("invalid end Month");
-        System.exit(1);
+        System.exit(-1);
       }
       String EndD = EndSplitMDY[1];
       int endDay = Integer.parseInt(EndD);
       if(0>endDay || endDay>31){
         System.out.print("invalid end Day");
-        System.exit(1);
+        System.exit(-1);
       }
 
       String EndY = EndSplitMDY[2];
       int endYear = Integer.parseInt(EndY);
       if(0>endYear || endYear>9999){
         System.out.print("invalid end year");
-        System.exit(1);
+        System.exit(-1);
       }
       String[] EndSplitHM = Ehm.split(":", 2);
       String EndH = EndSplitHM[0];
@@ -184,7 +184,7 @@ public class Appointment extends AbstractAppointment {
      // System.out.println("endHour= "+ endHour);
       if(0>endHour || endHour>23) {
         System.out.print("invalid end hour");
-        System.exit(1);
+        System.exit(-1);
       }
       String EndMin = EndSplitHM[1];
       //System.out.println("EndMin= "+ EndMin);
@@ -192,12 +192,12 @@ public class Appointment extends AbstractAppointment {
         //System.out.println("EndMin:: "+ EndMin);
       if(0>endMin || endMin>59) {
             System.out.print("invalid end min");
-            System.exit(1);
+            System.exit(-1);
         }
 
         if(0>beginMin || beginMin>59) {
             System.out.print("invalid begin min");
-            System.exit(1);
+            System.exit(-1);
         }
       if (beginYear > endYear) {
         System.out.println("begin time Year is later than end time Year");

@@ -44,7 +44,14 @@ public class AppointmentBook extends AbstractAppointmentBook< Appointment> {
 
     public void printALLInfo() {
         System.out.print(' ');
-       System.out.print(this.toString());
+       System.out.print(this.toString()+"\n");
+
+       for(int i=0; i< this.list.size(); i++){
+           System.out.print("Description: "+ list.get(i).descrip+ "  ");
+           System.out.print("BeginTime: "+ list.get(i).beginTime+ "  ");
+           System.out.println("EndTime: "+ list.get(i).endTime);
+
+       }
     }
 @Override
     public String getOwnerName(){
