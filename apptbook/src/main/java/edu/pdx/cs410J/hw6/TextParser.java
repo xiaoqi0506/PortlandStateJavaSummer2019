@@ -49,7 +49,7 @@ public class TextParser implements AppointmentBookParser <AppointmentBook> {
             while(line!=null){
                 //System.out.println("line= " + line);
                 String details = line.toString();
-                String delim = "[,]";
+                String delim = "[*]";
                 String[] tokens = details.split(delim);
                 int size = tokens.length;
                // System.out.println("Token length: "+ size);
