@@ -94,6 +94,54 @@ public class TextParser implements AppointmentBookParser <AppointmentBook> {
 
 
 
+    }
+
+
+
+    public boolean namecheck(String name) {
+        BufferedReader reader;
+        ArrayList<Appointment> LIST = new ArrayList<Appointment>();
+        String OWNER = null;
+        AppointmentBook book = new AppointmentBook();
+        try{
+            reader=new BufferedReader((new FileReader("APPTBOOK.txt")));
+            String line= reader.readLine();
+            while(line!=null){
+                //System.out.println("line= " + line);
+                String details = line.toString();
+                String delim = "[,]";
+                String[] tokens = details.split(delim);
+                int size = tokens.length;
+                // System.out.println("Token length: "+ size);
+                if (size < 4) {
+                    System.err.print(" details lacked, the file might be broken");
+                    System.exit(-1);}
+                else if (size < 4) {
+                    System.err.print(" details lacked, the file might be broken");
+                    System.exit(-1);
+                }
+                else {
+                    String owner = tokens[0];
+                    book.owner = owner;
+
+                    if(!book.owner.equals(name)){
+                       // System.out.println("name does not match");
+                        return false;
+                    }
+
+
+                }
+                line = reader.readLine();
+            }
+            reader.close();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Name is match congrad");
+        return true;
 
     }
 

@@ -173,6 +173,13 @@ public class Project2 {
                 ArrayList<Appointment> obj = new ArrayList<Appointment>();// create a new list of APPT
                 obj.add(appt);//just contains only one obj
                 AppointmentBook book= new AppointmentBook(owner, obj);//create a new book of owner with one obj
+
+                TextParser parse= new TextParser();// download
+                if(parse.namecheck(my_arg[0])==false){
+                    System.out.println("Name DO NOT MATCH");
+                    System.exit(-1);
+                }
+
                 try {
                     TextDumper dumper= new TextDumper();// initial new textDumper
                     dumper.dump(book);//write to the file, and update new APPTBOOK to file
@@ -181,7 +188,7 @@ public class Project2 {
                     e.printStackTrace();
                 }
 
-                TextParser parse= new TextParser();// download
+               // TextParser parse= new TextParser();// download
 
                 parse.book=parse.parse();
                 System.out.println("Pirnt out the info an apptbook from file with the new inserted aptbook");
