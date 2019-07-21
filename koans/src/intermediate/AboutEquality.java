@@ -12,29 +12,30 @@ public class AboutEquality {
     public void sameObject() {
         Object a = new Object();
         Object b = a;
-        assertEquals(a == b, __);
+        assertEquals(a == b, true);
     }
 
     @Koan
     public void equalObject() {
         Integer a = new Integer(1);
         Integer b = new Integer(1);
-        assertEquals(a.equals(b), __);
-        assertEquals(b.equals(a), __);
+        assertEquals(a.equals(b), true);
+        assertEquals(b.equals(a), true);
     }
 
     @Koan
     public void noObjectShouldBeEqualToNull() {
-        assertEquals(new Object().equals(null), __);
+        assertEquals(new Object().equals(null), false);
     }
 
     static class Car {
+        @SuppressWarnings("unused")
         private String name = "";
+        @SuppressWarnings("unused")
         private int horsepower = 0;
 
         public Car(String s, int p) {
-            name = s;
-            horsepower = p;
+            name = s; horsepower = p;
         }
 
         @Override
@@ -42,13 +43,19 @@ public class AboutEquality {
             // Change this implementation to match the equals contract
             // Car objects with same horsepower and name values should be considered equal
             // http://download.oracle.com/javase/6/docs/api/java/lang/Object.html#equals(java.lang.Object)
+            if (!(other instanceof Car)) {
+                return false;
+            }
+            if (this.hashCode() == other.hashCode()) {
+                return true;
+            }
             return false;
         }
 
         @Override
         public int hashCode() {
-            // @see http://download.oracle.com/javase/6/docs/api/java/lang/Object.html#hashCode()
-            return super.hashCode();
+            // see koan ownHashCode
+            return (this.name + this.horsepower).hashCode();
         }
     }
 
@@ -56,7 +63,7 @@ public class AboutEquality {
     public void equalForOwnObjects() {
         Car car1 = new Car("Beetle", 50);
         Car car2 = new Car("Beetle", 50);
-        // @see Car.equals (around line 45) for the place to solve this
+        // See line 37 for the task you have to solve
         assertEquals(car1.equals(car2), true);
         assertEquals(car2.equals(car1), true);
     }
@@ -65,7 +72,7 @@ public class AboutEquality {
     public void unequalForOwnObjects() {
         Car car1 = new Car("Beetle", 50);
         Car car2 = new Car("Porsche", 300);
-        // @see Car.equals (around line 45) for the place to solve this
+        // See line 37 for the task you have to solve
         assertEquals(car1.equals(car2), false);
     }
 
@@ -73,14 +80,14 @@ public class AboutEquality {
     public void unequalForOwnObjectsWithDifferentType() {
         Car car1 = new Car("Beetle", 50);
         String s = "foo";
-        // @see Car.equals (around line 45) for the place to solve this
+        // See line 37 for the task you have to solve
         assertEquals(car1.equals(s), false);
     }
 
     @Koan
     public void equalNullForOwnObjects() {
         Car car1 = new Car("Beetle", 50);
-        // @see Car.equals (around line 45) for the place to solve this
+        // See line 37 for the task you have to solve
         assertEquals(car1.equals(null), false);
     }
 
@@ -91,7 +98,7 @@ public class AboutEquality {
         // Read the hash code contract to figure out why
         // http://download.oracle.com/javase/6/docs/api/java/lang/Object.html#hashCode()
 
-        // Implement Car.hashCode around line 51 so that the following assertions pass
+        // Implement a hash code version in line 47 so that the following assertions pass
         Car car1 = new Car("Beetle", 50);
         Car car2 = new Car("Beetle", 50);
         assertEquals(car1.equals(car2), true);
@@ -100,29 +107,26 @@ public class AboutEquality {
 
     static class Chicken {
         String color = "green";
-
         @Override
         public int hashCode() {
             return 4000;
         }
-
         @Override
         public boolean equals(Object other) {
-            if (!(other instanceof Chicken))
+            if(!(other instanceof Chicken))
                 return false;
-            return ((Chicken) other).color.equals(color);
+            return ((Chicken)other).color.equals(color);
         }
     }
 
     @Koan
     public void ownHashCodeImplementationPartTwo() {
-        Chicken chicken1 = new Chicken();
-        chicken1.color = "black";
+        Chicken chicken1 = new Chicken(); chicken1.color = "black";
         Chicken chicken2 = new Chicken();
-        assertEquals(chicken1.equals(chicken2), __);
-        assertEquals(chicken1.hashCode() == chicken2.hashCode(), __);
-        // Does this still fit the hashCode contract? Why (not)?
-        // Fix the Chicken class to correct this.
+        assertEquals(chicken1.equals(chicken2), false);
+        assertEquals(chicken1.hashCode() == chicken2.hashCode(), true);
+        // Does this still fit the hashCode contract? Why?
+        // If it's valid why is this still not a good idea?
     }
 
 }

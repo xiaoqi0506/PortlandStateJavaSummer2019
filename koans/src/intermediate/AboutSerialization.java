@@ -23,11 +23,11 @@ public class AboutSerialization {
 
         // deserialize
         ObjectInputStream is = null;
-        try {
+        try{
             is = new ObjectInputStream(new FileInputStream("SerializeFile"));
-            String otherString = (String) is.readObject();
-            assertEquals(otherString, __);
-        } finally {
+            String otherString = (String)is.readObject();
+            assertEquals(otherString, "Hello world");
+        }finally{
             closeStream(is);
         }
     }
@@ -52,28 +52,24 @@ public class AboutSerialization {
         os.close();
 
         ObjectInputStream is = null;
-        try {
+        try{
             is = new ObjectInputStream(new FileInputStream("SerializeFile"));
-            Starship onTheOtherSide = (Starship) is.readObject();
-            assertEquals(onTheOtherSide.maxWarpSpeed, __);
-        } finally {
+            Starship onTheOtherSide = (Starship)is.readObject();
+            assertEquals(onTheOtherSide.maxWarpSpeed, 9);
+        }finally{
             closeStream(is);
         }
     }
 
     static class Engine {
         String type;
-
-        public Engine(String t) {
-            type = t;
-        }
-    }
+        public Engine(String t) { type = t; }
+    };
 
     @SuppressWarnings("serial")
     static class Car implements Serializable {
         // Transient means: Ignore field for serialization
         transient Engine engine;
-
         // Notice these methods are private and will be called by the JVM
         // internally - as if they where defined by the Serializable interface
         // but they aren't defined as part of the interface
@@ -81,10 +77,9 @@ public class AboutSerialization {
             os.defaultWriteObject();
             os.writeObject(engine.type);
         }
-
         private void readObject(ObjectInputStream is) throws IOException, ClassNotFoundException {
             is.defaultReadObject();
-            engine = new Engine((String) is.readObject());
+            engine = new Engine((String)is.readObject());
         }
     }
 
@@ -101,11 +96,11 @@ public class AboutSerialization {
         os.close();
 
         ObjectInputStream is = null;
-        try {
+        try{
             is = new ObjectInputStream(new FileInputStream("SerializeFile"));
-            Car deserializedCar = (Car) is.readObject();
-            assertEquals(deserializedCar.engine.type, __);
-        } finally {
+            Car deserializedCar = (Car)is.readObject();
+            assertEquals(deserializedCar.engine.type, "diesel");
+        }finally{
             closeStream(is);
         }
     }
@@ -125,17 +120,16 @@ public class AboutSerialization {
         String marker = "Start ";
         try {
             os.writeObject(boat);
-        } catch (NotSerializableException e) {
+        } catch(NotSerializableException e) {
             marker += "Exception";
         }
         os.close();
-        assertEquals(marker, __);
+        assertEquals(marker, "Start Exception");
     }
 
     @SuppressWarnings("serial")
     static class Animal implements Serializable {
         String name;
-
         public Animal(String s) {
             name = s;
         }
@@ -158,27 +152,22 @@ public class AboutSerialization {
         os.close();
 
         ObjectInputStream is = null;
-        try {
+        try{
             is = new ObjectInputStream(new FileInputStream("SerializeFile"));
-            Dog otherDog = (Dog) is.readObject();
-            assertEquals(otherDog.name, __);
-        } finally {
+            Dog otherDog = (Dog)is.readObject();
+            assertEquals(otherDog.name, "snoopy");
+        }finally{
             closeStream(is);
         }
     }
 
     static class Plane {
         String name;
-
         public Plane(String s) {
             name = s;
         }
-
-        public Plane() {
-        }
-
+        public Plane() {};
     }
-
     @SuppressWarnings("serial")
     static class MilitaryPlane extends Plane implements Serializable {
         public MilitaryPlane(String s) {
@@ -195,24 +184,24 @@ public class AboutSerialization {
         os.close();
 
         ObjectInputStream is = null;
-        try {
+        try{
             is = new ObjectInputStream(new FileInputStream("SerializeFile"));
-            MilitaryPlane otherPlane = (MilitaryPlane) is.readObject();
+            MilitaryPlane otherPlane = (MilitaryPlane)is.readObject();
             // Does this surprise you?
-            assertEquals(otherPlane.name, __);
+            assertEquals(otherPlane.name, null);
 
             // Think about how serialization creates objects...
             // It does not use constructors! But if a parent object is not serializable
             // it actually uses constructors and if the fields are not in a serializable class...
             // unexpected things - like this - may happen
-        } finally {
+        }finally{
             closeStream(is);
         }
     }
 
     private void closeStream(ObjectInputStream ois) {
-        if (ois != null) {
-            try {
+        if(ois != null){
+            try{
                 ois.close();
             } catch (IOException x) {
                 Logger.getAnonymousLogger().severe("Unable to close reader.");
