@@ -17,9 +17,11 @@ public class Project2 {
 
     public static void main(String[] args) throws IOException {
 
+
+
         /*
         The following is the part to check if there is any options
-         */
+
        /* for (String arg : args) {
             System.out.println(arg + " ");
         }
@@ -124,83 +126,89 @@ public class Project2 {
                 }
             }
         }
-    // need renew my args for main  it could be shorter then original
+
+        // need renew my args for main  it could be shorter then original
+        my_list.remove("-print");
+        my_list.remove("-testFile");
+        my_list.remove("APPTBOOK.txt");
         my_arg=my_list.toArray(new String[0]);
         System.out.println("the new insert apt details are:  \n");
+
+        System.out.println("my_arg length:"+my_arg.length);
+
         for (int i = 0; i<my_arg.length;i++) {
-            System.out.println( my_arg[i]);
+            System.out.println( my_arg[i]+"%");
         }
 
 
 
 
-            if (my_arg != null) {
-                int size = my_arg.length;
-                if (size < 4) {
-                    System.out.print("Lack of args");
-                    System.exit(-1);
-                }
-                if (size > 4) {
-                    System.out.print(" args > 4");
-                    System.exit(-1);
-                }
-                String owner = my_arg[0];
-
-                String desc = my_arg[1];
-                String begintime = my_arg[2];
-                String endtime = my_arg[3];
-
-                if (owner.length() > 50) {
-                    System.out.println("NAME is too long, may be you need to shorten your name");
-                    System.exit(-1);
-                }
-                if (desc == null) {
-                    System.out.print("Name is null");
-                    System.exit(-1);
-                }
-                if (begintime == null) {
-                    System.out.print("Begin Time is null");
-                    System.exit(-1);
-                }
-
-                if (endtime == null) {
-                    System.out.print("End Time is null");
-                    System.exit(-1);
-                }
-
-
-                Appointment appt = new Appointment(desc, begintime, endtime);
-                ArrayList<Appointment> obj = new ArrayList<Appointment>();// create a new list of APPT
-                obj.add(appt);//just contains only one obj
-                AppointmentBook book= new AppointmentBook(owner, obj);//create a new book of owner with one obj
-
-                TextParser parse= new TextParser();// download
-                if(parse.namecheck(my_arg[0])==false){
-                    System.out.println("Name DO NOT MATCH");
-                    System.exit(-1);
-                }
-
-                try {
-                    TextDumper dumper= new TextDumper();// initial new textDumper
-                    dumper.dump(book);//write to the file, and update new APPTBOOK to file
-                } catch (IOException e)
-                {
-                    e.printStackTrace();
-                }
-
-               // TextParser parse= new TextParser();// download
-
-                parse.book=parse.parse();
-                System.out.println("Pirnt out the info an apptbook from file with the new inserted aptbook");
-                parse.book.printALLInfo();
-
-            }
-
-            else {
-
-                System.out.print("NO args at all");
+        if (my_arg != null) {
+            int size = my_arg.length;
+            if (size < 4) {
+                System.out.print("Lack of args");
                 System.exit(-1);
             }
-        System.exit(1);
+            if (size > 4) {
+                System.out.print(" args > 4");
+                System.exit(-1);
+            }
+            String owner = my_arg[0];
+            String desc = my_arg[1];
+            String begintime = my_arg[2];
+            String endtime = my_arg[3];
+
+            if (owner.length() > 50) {
+                System.out.println("NAME is too long, may be you need to shorten your name");
+                System.exit(-1);
+            }
+            if (desc == null) {
+                System.out.print("Name is null");
+                System.exit(-1);
+            }
+            if (begintime == null) {
+                System.out.print("Begin Time is null");
+                System.exit(-1);
+            }
+
+            if (endtime == null) {
+                System.out.print("End Time is null");
+                System.exit(-1);
+            }
+
+
+            Appointment appt = new Appointment(desc, begintime, endtime);
+            ArrayList<Appointment> obj = new ArrayList<Appointment>();// create a new list of APPT
+            obj.add(appt);//just contains only one obj
+            AppointmentBook book= new AppointmentBook(owner, obj);//create a new book of owner with one obj
+
+            TextParser parse= new TextParser();// download
+            if(parse.namecheck(my_arg[0])==false){
+                System.out.println("Name DO NOT MATCH");
+                System.exit(-1);
+            }
+
+            try {
+                TextDumper dumper= new TextDumper();// initial new textDumper
+                dumper.dump(book);//write to the file, and update new APPTBOOK to file
+            } catch (IOException e)
+            {
+                e.printStackTrace();
+            }
+
+            // TextParser parse= new TextParser();// download
+
+            parse.book=parse.parse();
+            System.out.println("Pirnt out the info an apptbook from file with the new inserted aptbook");
+            parse.book.printALLInfo();
+
         }
+
+        else {
+
+            System.out.print("NO args at all");
+            System.exit(-1);
+        }
+        System.exit(1);
     }
+}
