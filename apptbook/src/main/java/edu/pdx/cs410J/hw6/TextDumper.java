@@ -44,20 +44,20 @@ public class TextDumper implements AppointmentBookDumper <AppointmentBook> {
         try{
             File file = new File("APPTBOOK.txt");
 
-            Writer Writer=new FileWriter(file, true);
+            FileWriter  fileWriter=new FileWriter(file, true);
             String tmp_str = new String();
 
             for(int i=0; i<book.list.size(); i++){
-                tmp_str = tmp_str.concat(book.owner.toString()+"*");
-                tmp_str = tmp_str.concat(book.list.get(i).descrip.toString()+"*");
-                tmp_str = tmp_str.concat(book.list.get(i).beginTime.toString()+"*");
+                tmp_str = tmp_str.concat(book.owner.toString()+"@");
+                tmp_str = tmp_str.concat(book.list.get(i).descrip.toString()+"@");
+                tmp_str = tmp_str.concat(book.list.get(i).beginTime.toString()+"@");
                 tmp_str = tmp_str.concat(book.list.get(i).endTime.toString());
                 tmp_str = tmp_str.concat("\n");
             }
             //str = tmp_str.toString();
-            Writer.write(tmp_str);
+            fileWriter.write(tmp_str);
 
-            Writer.close();
+            fileWriter.close();
         }catch (IOException e){
             e.printStackTrace();
         }

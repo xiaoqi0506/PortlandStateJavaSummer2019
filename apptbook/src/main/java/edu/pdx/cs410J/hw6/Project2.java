@@ -17,9 +17,11 @@ public class Project2 {
 
     public static void main(String[] args) throws IOException {
 
+
+
         /*
         The following is the part to check if there is any options
-         */
+
        /* for (String arg : args) {
             System.out.println(arg + " ");
         }
@@ -124,11 +126,18 @@ public class Project2 {
                 }
             }
         }
+
     // need renew my args for main  it could be shorter then original
+        my_list.remove("-print");
+        my_list.remove("-testFile");
+        my_list.remove("APPTBOOK.txt");
         my_arg=my_list.toArray(new String[0]);
         System.out.println("the new insert apt details are:  \n");
+
+        System.out.println("my_arg length:"+my_arg.length);
+
         for (int i = 0; i<my_arg.length;i++) {
-            System.out.println( my_arg[i]);
+            System.out.println( my_arg[i]+"%");
         }
 
 
@@ -145,7 +154,6 @@ public class Project2 {
                     System.exit(-1);
                 }
                 String owner = my_arg[0];
-
                 String desc = my_arg[1];
                 String begintime = my_arg[2];
                 String endtime = my_arg[3];

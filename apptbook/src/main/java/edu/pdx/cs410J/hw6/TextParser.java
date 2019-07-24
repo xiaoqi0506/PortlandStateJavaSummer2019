@@ -39,25 +39,29 @@ public class TextParser implements AppointmentBookParser <AppointmentBook> {
         this.book= book;
     }
     public AppointmentBook parse() {
+        System.out.println("here ");
         BufferedReader reader;
         ArrayList<Appointment> LIST = new ArrayList<Appointment>();
         String OWNER = null;
+
         AppointmentBook book = new AppointmentBook();
         try{
-            reader=new BufferedReader((new FileReader("APPTBOOK.txt")));
+            reader=new BufferedReader(new FileReader("APPTBOOK.txt"));
+            System.out.println("get a apptbook.txt");
             String line= reader.readLine();
             while(line!=null){
-                //System.out.println("line= " + line);
+                System.out.println("line= " + line);
                 String details = line.toString();
-                String delim = "[*]";
+                System.out.println("Details:"+ details);
+                String delim = "[@]";
                 String[] tokens = details.split(delim);
                 int size = tokens.length;
                // System.out.println("Token length: "+ size);
                 if (size < 4) {
                     System.err.print(" details lacked, the file might be broken");
                     System.exit(-1);}
-                else if (size < 4) {
-                    System.err.print(" details lacked, the file might be broken");
+                else if (size >4) {
+                    System.err.print(" details overloaded, the file might be broken");
                     System.exit(-1);
                 }
                 else {
@@ -109,14 +113,14 @@ public class TextParser implements AppointmentBookParser <AppointmentBook> {
             while(line!=null){
                 //System.out.println("line= " + line);
                 String details = line.toString();
-                String delim = "[,]";
+                String delim = "[@]";
                 String[] tokens = details.split(delim);
                 int size = tokens.length;
                 // System.out.println("Token length: "+ size);
                 if (size < 4) {
                     System.err.print(" details lacked, the file might be broken");
                     System.exit(-1);}
-                else if (size < 4) {
+                else if (size >4) {
                     System.err.print(" details lacked, the file might be broken");
                     System.exit(-1);
                 }
