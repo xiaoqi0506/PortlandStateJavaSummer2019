@@ -14,13 +14,8 @@ public class Project3 {
 
     public static void main(String[] args) throws IOException, ParseException {
 
-        /*
-        The following is the part to check if there is any options
-         */
-       /* for (String arg : args) {
-            System.out.println(arg + " ");
-        }
-        */
+
+
         String[] my_arg;
         my_arg = args;
         List<String> my_list = new ArrayList<String>(Arrays.asList(my_arg));
@@ -55,8 +50,8 @@ public class Project3 {
                     System.exit(1);
                 } else if (args[i + 1].equals("-README")) {
                     System.out.println("Programmer: HE WANG\n");
-                    System.out.println("Project 2 README\n");
-                    System.out.println("Description: This project will have to method classes additional to project 1. \n" +
+                    System.out.println("Project 3 README\n");
+                    System.out.println("Description: This project will have to method classes additional to project 1 and 2. \n" +
                             "TextDumper will write context to an external file, and TextParser will read from the file" +
                             "The external file is named APPTBOOK.txt, which will contain all details about the users\n" +
                             "the file name has to signed with .txt" +
@@ -64,11 +59,14 @@ public class Project3 {
                             "in the following paragraph.\n" +
                             "WARNNING THIS PROJECT IS RESTRICTED ON HOW YOU USE READ ME." +
                             "README HAS THE TOP PRIORITY, IF YOUR OPTION HAS A README, NO MATTER WHERE IT IS, YOU WILL SEE THIS INSTROCTION" +
-                            "Project 2 will take 4 Strings as argument list. All of those argument will be quoted in quoatation markes. \n" +
+                            "Project 3 will take 4 Strings as argument list just like the last one. All of those argument will be quoted in quoatation markes. \n" +
                             "There should be a space between each argument\n" +
                             "The order of those arguments should be insert in particular order. The list has to follow this order: name\n" +
-                            "of the owner of the Appointment book, the description of the appointment, the time of appointment begin time,\n" +
-                            "and the time of the appointment end time.");
+                            "of the owner of the Appointment book, the description of the appointment, the time of appointment begin time with am/pm,\n" +
+                            "and the time of the appointment end time with am/pm.\n"+
+                            "if you want to pretty print, you will have a option called -pretty with filename APPTBOOK.txt as a separate premiter, the program,\n "+
+                            "will create a txt file for saving the pretty formate of all inserted appointmets. The pretty file is called PrettyAPPTBOOK.txt"
+                    );
                     System.exit(1);
                 } else if (args[i + 1].equals("APPTBOOK.txt")) {// if there the file found
                     System.out.println("printing out the File");

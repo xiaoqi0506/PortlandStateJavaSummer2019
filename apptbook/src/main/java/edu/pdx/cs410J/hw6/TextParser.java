@@ -39,7 +39,6 @@ public class TextParser implements AppointmentBookParser <AppointmentBook> {
         this.book= book;
     }
     public AppointmentBook parse() {
-       // System.out.println("here ");
         BufferedReader reader;
         ArrayList<Appointment> LIST = new ArrayList<Appointment>();
         String OWNER = null;
@@ -60,8 +59,8 @@ public class TextParser implements AppointmentBookParser <AppointmentBook> {
                 if (size < 4) {
                     System.err.print(" details lacked, the file might be broken");
                     System.exit(-1);}
-                else if (size >4) {
-                    System.err.print(" details overloaded, the file might be broken");
+                else if (size < 4) {
+                    System.err.print(" details lacked, the file might be broken");
                     System.exit(-1);
                 }
                 else {

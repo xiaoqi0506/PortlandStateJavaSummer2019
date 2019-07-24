@@ -53,15 +53,7 @@ public class Appointment extends AbstractAppointment implements Comparable<Appoi
     if (descrip.length() > 500) {
       System.out.println("Description is too long");
     }
-    /*if (TimeRegex(beginTime) == false) {
-      System.out.println("Your begin time is in invalid format");
-      return;
-    }
-    if (TimeRegex(endTime) == false) {
-      System.out.println("Your end time is in invalid format");
-      return;
-    }
-    */
+
 
 
     if (BeginEarlyThanEnd(beginTime, endTime) == false) {
@@ -69,8 +61,6 @@ public class Appointment extends AbstractAppointment implements Comparable<Appoi
       System.exit(1);
       return;
     }
-
-
 
   }
 
